@@ -1,0 +1,27 @@
+services:
+  yarn:
+    build:
+      context: .
+      dockerfile: docker_files/yarn.Dockerfile
+    volumes:
+      - ./app:/app
+    stdin_open: true
+    tty: true
+  nest:
+    build:
+      context: .
+      dockerfile: docker_files/nest.Dockerfile
+    volumes:
+      - ./:/app
+    stdin_open: true
+    tty: true
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: docker_files/app.Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./app/src:/app/src
+    command: ["yarn", "run", "start:dev"]
