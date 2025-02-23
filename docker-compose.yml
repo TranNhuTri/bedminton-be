@@ -15,6 +15,13 @@ services:
       - ./:/app
     stdin_open: true
     tty: true
+  database:
+    container_name: database
+    image: mysql:8.0
+    env_file:
+      - env/mysql.env
+    ports:
+      - 3306:3306
   app:
     container_name: app
     build:

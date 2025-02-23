@@ -1,1 +1,2 @@
-docker compose -f docker-compose.dev.yml up -d app
+docker compose down
+docker compose up -d --build app database
